@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "545592204516",
+    "project_id": "bakeryapp-b0e1d",
+    "storage_bucket": "bakeryapp-b0e1d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545592204516:android:2f1e2ae5f7959b3211e0f1",
+        "android_client_info": {
+          "package_name": "com.example.bakeryapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyBhwcrQKSsHQng-MDW0hanf-KS3dPzaE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
