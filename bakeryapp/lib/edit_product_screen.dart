@@ -27,6 +27,10 @@ class EditProductScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               var productData = products[index];
               return ListTile(
+                // เพิ่มการแสดงรูปภาพใน ListTile
+                leading: productData['imageUrl'] != null
+                    ? Image.network(productData['imageUrl'], width: 50, height: 50, fit: BoxFit.cover)
+                    : null,
                 title: Text(productData['name']),
                 subtitle: Text('Price: \$${productData['price']}'),
                 trailing: Row(
@@ -85,7 +89,7 @@ class _EditSpecificProductScreenState extends State<EditSpecificProductScreen> {
     DocumentSnapshot productSnapshot = await _firestore.collection('products').doc(widget.productId).get();
     _nameController.text = productSnapshot['name'];
     _priceController.text = productSnapshot['price'].toString();
-    _linkController.text = productSnapshot['link'] ?? ''; // โหลดลิงค์จาก Firestore
+    _linkController.text = productSnapshot['imageUrl'] ?? ''; // โหลดลิงค์จาก Firestore
   }
 
   Future<void> _updateProduct() async {
@@ -96,7 +100,7 @@ class _EditSpecificProductScreenState extends State<EditSpecificProductScreen> {
     await _firestore.collection('products').doc(widget.productId).update({
       'name': name,
       'price': price,
-      'link': link, // อัปเดตลิงค์ใน Firestore
+      'imageUrl': link, // อัปเดตลิงค์ใน Firestore
     });
 
     Navigator.pop(context); // กลับไปที่หน้าจอก่อนหน้านี้
@@ -128,7 +132,7 @@ class _EditSpecificProductScreenState extends State<EditSpecificProductScreen> {
             ),
             TextField(
               controller: _linkController, // เพิ่ม TextField สำหรับลิงค์
-              decoration: InputDecoration(labelText: 'Product Link'),
+              decoration: InputDecoration(labelText: 'Product Image Link'),
             ),
             SizedBox(height: 20),
             ElevatedButton(
